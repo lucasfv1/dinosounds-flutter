@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
+// Construct the customElevatedButton tha is used on home to print dinosaurs options
+
+// Instantiate and set configuration for play sounds
 var cache = AudioCache();
 var player = AudioPlayer();
 
@@ -15,25 +18,29 @@ class customElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ButtonStyle(
-          shadowColor: MaterialStateProperty.all<Color>(Colors.black),
-          elevation: MaterialStateProperty.all<double>(10.0),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          )),
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-      onPressed: () {
-        player.stop(); // Stop the sound before play next
-        playSound(dinosaur);
-      },
-      child: Container(
-          padding: EdgeInsets.all(8),
-          child: Image.asset(
+    return Expanded(
+      child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: ElevatedButton(
+          style: ButtonStyle(
+              shadowColor: MaterialStateProperty.all<Color>(Colors.black),
+              elevation: MaterialStateProperty.all<double>(10.0),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              )),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
+          onPressed: () {
+            player.stop(); // Stop the sound before play next
+            playSound(dinosaur);
+          },
+          child: Container(
+              child: Image.asset(
             'assets/images/$dinosaur.png',
-            fit: BoxFit.scaleDown,
+            fit: BoxFit.fill,
           )),
+        ),
+      ),
     );
   }
 }
